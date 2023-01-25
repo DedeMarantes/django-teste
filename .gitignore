@@ -1,3 +1,8 @@
 Pyton
 venv
 .vscode
+escola/__pycache__
+setup/__pycache__
+query.sql
+.gitignore
+escola/migrations/__pycache__
