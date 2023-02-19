@@ -18,6 +18,11 @@ class MatriculaSerializer(serializers.ModelSerializer):
         model = Matricula
         fields = '__all__'
 
+class AlunoSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Aluno
+        fields = ['id','nome','rg','cpf','date','celular']
+
 class ListaMatriculasAlunoSerializer(serializers.ModelSerializer):
     curso = serializers.ReadOnlyField(source='curso.descricao')
     periodo = serializers.SerializerMethodField()

@@ -1,9 +1,8 @@
 from rest_framework import generics, viewsets
-from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
 
 from escola.models import Aluno, Curso, Matricula
-from escola.serializer import (AlunoSerializer, CursoSerializer,
+from escola.serializer import (AlunoSerializer, AlunoSerializerV2,
+                               CursoSerializer,
                                ListaAlunosMatriculadosSerializer,
                                ListaMatriculasAlunoSerializer,
                                MatriculaSerializer)
@@ -13,23 +12,22 @@ from escola.serializer import (AlunoSerializer, CursoSerializer,
 class AlunosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos e alunas"""
     queryset = Aluno.objects.all()
-    serializer_class = AlunoSerializer
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return AlunoSerializerV2
+        else:
+            return AlunoSerializer
+
 
 class CursosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Listando todas as matriculas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Listando as matriculas de um aluno(a)"""

@@ -4,3 +4,4 @@ venv
 */__pycache__
 query.sql
 db.sqlite3
+seed.py
