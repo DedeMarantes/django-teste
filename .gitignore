@@ -5,3 +5,4 @@ venv
 query.sql
 db.sqlite3
 seed.py
+escola/migrations/__pycache__
