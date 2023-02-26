@@ -6,3 +6,4 @@ query.sql
 db.sqlite3
 seed.py
 escola/migrations/__pycache__
+media_root
